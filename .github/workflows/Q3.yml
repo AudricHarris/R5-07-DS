@@ -1,0 +1,50 @@
+name: Q3 - Archive Java
+
+on:
+  push:
+    paths:
+      - 'Q3.java'
+      - '.github/workflows/Q3.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-archive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Compile and test Q3.java
+        run: |
+          javac Q3.java
+          java Q3 5
+
+      - name: Create Q3_archive_java.txt
+        run: |
+          {
+            echo "Audric HARRIS"
+            echo "Fichier Q3.java :"
+            cat Q3.java
+          } > Q3_archive_java.txt
+
+      - name: Commit and push Q3_archive_java.txt
+        run: |
+          git config user.name "AudricHarris"
+          git config user.email "audricharrismail@gmail.com"
+          git add Q3_archive_java.txt
+          if git diff --staged --quiet; then
+            echo "Aucun changement détecté dans Q3_archive_java.txt."
+          else
+            git commit -m "Ajout de Q3_archive_java.txt"
+            git push
+          fi
