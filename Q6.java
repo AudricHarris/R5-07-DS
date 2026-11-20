@@ -3,7 +3,7 @@ public class Q6
 	public static void main(String[] args)
 	{
 		if (args.length == 0)
-			throw new Error("No param passed");
+			throw new Error("Erreur : Pas de parametre saisie");
 
 		int n = Integer.parseInt(args[0]);
 
