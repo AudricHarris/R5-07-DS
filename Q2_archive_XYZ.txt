@@ -1,0 +1,5 @@
+Nom et prénom : Audric HARRIS
+Date et heure d'exécution : 2026-11-20 14:08:33
+Taille de XYZ.txt : 1 octets
+Contenu de XYZ.txt :
+
