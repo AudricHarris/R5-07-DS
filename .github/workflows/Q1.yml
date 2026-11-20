@@ -27,8 +27,8 @@ jobs:
 
       - name: Commit and push Q1_archive_XYZ.txt
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "AudricHarris"
+          git config user.email "audricharrismail@gmail.com"
           git add Q1_archive_XYZ.txt
           if git diff --staged --quiet; then
             echo "Aucun changement détecté dans Q1_archive_XYZ.txt."
