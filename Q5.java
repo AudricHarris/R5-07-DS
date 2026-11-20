@@ -10,14 +10,13 @@ public class Q5
 		if (n < 1)
 			throw new Error("Erreur : N doit être supérieur ou égal à 1.");
 
-		while (n > 0)
+		for (int ligne = 1; ligne <= n; ligne++)
 		{
-			for (int cpt = n; cpt > 0; cpt--)
+			for (int cpt = ligne; cpt > 0; cpt--)
 			{
 				System.out.print(cpt + " ");
 			}
 			System.out.println("");
-			n--;
 		}
 	}
 }
