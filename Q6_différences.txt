@@ -1,1 +1,17 @@
-Aucun précédent fichier Q6_archive_*.txt trouvé pour comparaison.
+--- Q6_archive_20-11-2026-135504.txt	2026-11-20 13:56:33.256926674 +0000
++++ Q6_archive_20-11-2026-135635.txt	2026-11-20 13:56:35.839723996 +0000
+@@ -1,12 +1,12 @@
+ Audric Harris
+-Taille de Q6.java : 22 lignes, 406 caracteres
++Taille de Q6.java : 22 lignes, 423 caracteres
+ Fichier Q6.java :
+ public class Q6
+ {
+ 	public static void main(String[] args)
+ 	{
+ 		if (args.length == 0)
+-			throw new Error("No param passed");
++			throw new Error("Erreur : Pas de parametre saisie");
+ 
+ 		int n = Integer.parseInt(args[0]);
+ 
