@@ -16,7 +16,7 @@ public class Q5
 		{
 			for (int cpt = ligne; cpt > 0; cpt--)
 			{
-				System.out.print(cpt + " ");
+				System.out.print("x ");
 			}
 			System.out.println("");
 		}
