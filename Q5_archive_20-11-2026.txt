@@ -1,0 +1,25 @@
+Audric Harris
+Fichier Q5.java :
+public class Q5
+{
+	public static void main(String[] args)
+	{
+		if (args.length == 0)
+			throw new Error("No param passed");
+
+		int n = Integer.parseInt(args[0]);
+
+		if (n < 1)
+			throw new Error("Erreur : N doit être supérieur ou égal à 1.");
+
+		while (n > 0)
+		{
+			for (int cpt = n; cpt > 0; cpt--)
+			{
+				System.out.print(cpt + " ");
+			}
+			System.out.println("");
+			n--;
+		}
+	}
+}
