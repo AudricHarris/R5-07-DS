@@ -1,0 +1,20 @@
+public class Q3
+{
+	public static void main(String[] args)
+	{
+		if (args.length == 0)
+			throw new Error("No param passed");
+
+		int n = Integer.parseInt(args[0]);
+
+		if (n < 1)
+			throw new Error("Erreur : N doit être supérieur ou égal à 1.");
+
+		for (int i = n; i >= 1; i--)
+    {
+			System.out.print(i);
+			if (i > 1) System.out.print(" ");
+		}
+		System.out.println();
+	}
+}
