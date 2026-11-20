@@ -1,0 +1,39 @@
+name: Q2 Archive XYZ
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "XYZ.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  archive-xyz-details:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create Q2_archive_XYZ.txt
+        run: |
+          FILE_SIZE=$(wc -c < XYZ.txt)
+          EXEC_DATE=$(TZ="Europe/Paris" date "+%Y-%m-%d %H:%M:%S")
+
+          {
+            echo "Nom et prénom : Audric HARRIS"
+            echo "Date et heure d'exécution : ${EXEC_DATE}"
+            echo "Taille de XYZ.txt : ${FILE_SIZE} octets"
+            echo "Contenu de XYZ.txt :"
+            cat XYZ.txt
+          } > Q2_archive_XYZ.txt
+
+      - name: Commit and push Q2_archive_XYZ.txt
+        run: |
+          git config user.name "AudricHarris"
+          git config user.email "audricharrismail@gmail.com"
+          git add Q2_archive_XYZ.txt
+          git commit -m "chore: update Q2_archive_XYZ.txt"
+          git push
