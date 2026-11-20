@@ -1,36 +1,38 @@
-# This is a basic workflow to help you get started with Actions
+name: Q1 Archive XYZ
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
+    paths:
+      - "XYZ.txt"
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+permissions:
+  contents: write
+
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  archive-xyz:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Copy XYZ.txt into Q1_archive_XYZ.txt
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          if [ ! -f XYZ.txt ]; then
+            echo "Fichier XYZ.txt introuvable."
+            exit 1
+          fi
+          cp XYZ.txt Q1_archive_XYZ.txt
+
+      - name: Commit and push Q1_archive_XYZ.txt
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Q1_archive_XYZ.txt
+          if git diff --staged --quiet; then
+            echo "Aucun changement détecté dans Q1_archive_XYZ.txt."
+          else
+            git commit -m "chore: update Q1_archive_XYZ.txt from XYZ.txt"
+            git push
+          fi
