@@ -1,0 +1,42 @@
+name: Q4 Archive Java with Date
+
+on:
+  push:
+    paths:
+      - 'Q4.java'
+      - '.github/workflows/Q4.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create Q4_archive_JJ-MM-AAAA.txt
+        run: |
+          DATE_JJ_MM_AAAA=$(date +'%d-%m-%Y')
+          ARCHIVE_NAME="Q4_archive_${DATE_JJ_MM_AAAA}.txt"
+          {
+            echo "Audric Harris"
+            echo "Fichier Q4.java :"
+            cat Q4.java
+          } > "$ARCHIVE_NAME"
+          echo "ARCHIVE_NAME=$ARCHIVE_NAME" >> "$GITHUB_ENV"
+
+      - name: Commit and push archive
+        run: |
+          git config user.name "AudricHarris"
+          git config user.email "audricharrismail@gmail.com"
+          git add "$ARCHIVE_NAME"
+          if git diff --staged --quiet; then
+            echo "Aucun changement détecté dans $ARCHIVE_NAME."
+          else
+            git commit -m "Ajout de $ARCHIVE_NAME"
+            git push
+          fi
